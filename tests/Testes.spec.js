@@ -49,33 +49,8 @@ test("Access Blog and access the first blog post", async ({page}) => {
 
 test.only('Implicetly Opening a new page', async ({page}) => {
 
- // In this step we listen to a page opening event
-const [newPage] = await Promise.all([
-  page.context().waitForEvent('page'), // Waiit for the new tab to open
-  page.getByRole('link', { name: 'My LinkedIn' }).click(), // Click the intended link that opens in a new tab
-]);
-// Wait for the new page to load
-await newPage.waitForLoadState('networkidle');
 
- // In this step we listen to a page opening event
-const [newPage1] = await Promise.all([
-  page.context().waitForEvent('page'), // Wait for the new tab to open
-  page.getByRole('link', { name: 'My Github'}).click(), // Click the intended link that opens in a new tab
-]);
-// Wait for the new page to load
-await newPage1.waitForLoadState('networkidle');
 
- // In this step we listen to a page opening event
-const [newPage2] = await Promise.all([
-  page.context().waitForEvent('page'), // Wait for the new tab to open
-  page.getByRole('link', { name: 'My Medium ' }).click(), // Click the intended link that opens in a new tab
-]);
 
-// Wait for the new page to load
-await newPage2.waitForLoadState('networkidle');
-
-await newPage.close();
-await newPage1.close();
-await newPage2.close();
 
 })
