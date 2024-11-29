@@ -44,6 +44,10 @@ test("Access Blog and access the first blog post", async ({page}) => {
 
 });
 
-test.only('Implicetly Opening a new page', async ({page}) => {
+test('Implicetly Opening a new page', async ({page}) => {
+
+})
+
+test('Open every single blog post and take a screenshot', async ({page}) => {
 
 })
