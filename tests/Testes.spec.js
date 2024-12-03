@@ -45,7 +45,19 @@ test("Access Blog and access the first blog post", async ({page}) => {
 });
 
 test('Implicetly Opening a new page', async ({page}) => {
+  const newPagePromise = page.waitForEvent('popup');
+  await page.getByRole('link', { name: ' My LinkedIn' }).click({
+    modifiers: ['ControlOrMeta']
+  });
+  const newPage = await newPagePromise;
+  await newPage.waitForLoadState('networkidle');
 
+  await page.getByRole('link', { name: 'My GitHub' }).click({
+    modifiers: ['ControlOrMeta']
+  });
+  await page.getByRole('link', { name: 'My Medium' }).click({
+    modifiers: ['ControlOrMeta']
+  });
 })
 
 test('Open every single blog post and take a screenshot', async ({page}) => {
