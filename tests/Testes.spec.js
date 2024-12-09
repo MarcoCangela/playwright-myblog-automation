@@ -62,5 +62,12 @@ test('Implicetly Opening a new page', async ({page}) => {
 })
 
 test('Open every single blog post and take a screenshot', async ({page}) => {
-
+  await page.getByRole('link', { name: 'Blog', exact: true }).click();
+  const posts = await page.$$('main section li');
+  const postsArray = await Promise.all(
+    posts.map(async (post) => {
+      const link = await post.getAttribute('data-scroll-to-href');
+      return link;
+    })
+  );
 })
