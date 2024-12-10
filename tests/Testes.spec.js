@@ -62,12 +62,7 @@ test('Implicetly Opening a new page', async ({page}) => {
 })
 
 test('Open every single blog post and take a screenshot', async ({page}) => {
+  //Going to the Blog page to access the posts 
   await page.getByRole('link', { name: 'Blog', exact: true }).click();
-  const posts = await page.$$('main section li');
-  const postsArray = await Promise.all(
-    posts.map(async (post) => {
-      const link = await post.getAttribute('data-scroll-to-href');
-      return link;
-    })
-  );
+  //Get all the posts from the page and pass it to an array or another object that we can use to loop through
 })
