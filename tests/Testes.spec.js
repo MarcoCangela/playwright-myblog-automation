@@ -5,7 +5,7 @@ const url = "https://marcogarujo.netlify.app/";
 test.beforeEach(async ({ page }) => {
   // @ts-ignore
   await page.goto(url);
-  expect(await page.title()).toBe("Marco's Blog | QA Engineer");
+  expect(await page.title()).toBe("Marco Garujo | QA Engineer");
   await page.screenshot({ path: 'screenshot.png' });
 });
 
@@ -61,8 +61,11 @@ test('Implicetly Opening a new page', async ({page}) => {
   });
 })
 
-test('Open every single blog post and take a screenshot', async ({page}) => {
+test.only('Open every single blog post and take a screenshot', async ({page}) => {
   //Going to the Blog page to access the posts 
   await page.getByRole('link', { name: 'Blog', exact: true }).click();
   //Get all the posts from the page and pass it to an array or another object that we can use to loop through
+  const listOfPosts = await page.locator('li').allTextContents();
+  console.log(listOfPosts.length);
+
 })
