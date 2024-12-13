@@ -65,7 +65,23 @@ test.only('Open every single blog post and take a screenshot', async ({page}) =>
   //Going to the Blog page to access the posts 
   await page.getByRole('link', { name: 'Blog', exact: true }).click();
   //Get all the posts from the page and pass it to an array or another object that we can use to loop through
-  const listOfPosts = await page.locator('li').allTextContents();
-  console.log(listOfPosts.length);
+  const listOfPosts = await page.locator('#listOfPosts').allTextContents();
+  console.log(listOfPosts);
 
+  //getting the title of the posts and passing it to an array
+  let titles = await page.locator('#listOfPosts').allInnerTexts();
+  titles = titles.map(title => title.trim());
+  // console.log(titles.length);
+  // console.log(titles);
+  
+
+  // // const titles
+  // //What is missing and failing is the fact that my object is returnin an array with everything when I need to get each title individually and then click on it 
+
+  // for (let i = 0; i < listOfPosts.length; i++) {
+  //   await page.getByRole('link', { name: listOfPosts[i], exact: true }).click();
+  //   await page.waitForTimeout(1000);
+  //   await page.screenshot({ path: `screenshot-${i}.png` });
+  //   await page.goBack();
+  // }
 })
