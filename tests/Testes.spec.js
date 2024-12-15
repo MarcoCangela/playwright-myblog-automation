@@ -66,21 +66,19 @@ test.only('Open every single blog post and take a screenshot', async ({page}) =>
   await page.getByRole('link', { name: 'Blog', exact: true }).click();
 // Select all li elements within the ul
 const listItems = await page.$$('ul#listOfPosts > li');
-console.log(listItems)
-
-const pages = [];
+console.log(listItems.length)
 
 for (const li of listItems) {
+  // Find the link within the current li
   const link = await li.$('a');
   if (link) {
+    // Click the link
     await link.click();
-    const newPage = await pages.pop();
-    if (newPage) {
-      await newPage.waitForLoadState('networkidle');
-      await newPage.screenshot({ path: `screenshot-${Date.now()}.png` });
-    }
   }
+  
+  await page.waitForTimeout(2500);
 }
+// await page.pause();
   // const page2Promise = page.waitForEvent('popup');
   // await page.getByRole('link', { name: 'Beyond Functional Testing:' }).click();
   // const page2 = await page2Promise;
