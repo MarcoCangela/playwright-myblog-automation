@@ -1,6 +1,6 @@
 class HomePage{
 
-    constructor() { 
+    constructor(page) { 
         
     }
 }
